@@ -19,6 +19,17 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Set Environment Variable
+        env:
+          REACT_APP_APIKEY: ${{ secrets.REACT_APP_APIKEY }}
+          REACT_APP_KEY: ${{ secrets.REACT_APP_KEY }}
+          REACT_APP_URIBASE: ${{ secrets.REACT_APP_URIBASE }}
+          REACT_APP_URIOPENAI: ${{ secrets.REACT_APP_URIOPENAI }}
+        run: |
+          echo "REACT_APP_APIKEY=$REACT_APP_APIKEY" >> .env
+          echo "REACT_APP_KEY=$REACT_APP_KEY" >> .env
+          echo "REACT_APP_URIBASE=$REACT_APP_URIBASE" >> .env
+          echo "REACT_APP_URIOPENAI=$REACT_APP_URIOPENAI" >> .env
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
